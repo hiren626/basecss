@@ -1,10 +1,9 @@
-/*  RESETing "BODY" TO MARGIN=0 PADDING=0 BOX-SIZING=BORDERBOX */
-let reset_the_base = document.querySelectorAll(".reset_base");
-for (i = 0; i <reset_the_base.length; i++) {
-  reset_the_base[i].setAttribute('style',
-  'margin:0px; padding:0px; box-sizing:border-box;');}
+//NOTE: TO USE BASECSS COPY THIS FILE AND LINK IT IN THE "HEAD" TAG OF YOUR DOCUMENT(index.html).
 
-/* GETTING CLASS FROM NODE LIST */
+// an eventlistener ....to delay the load, inspite located in the head. it will be loaded after the doc....   
+document.addEventListener("DOMContentLoaded", () => {
+
+// making list out of html node tree.....
 var allClasses = [];
 var allElements = document.querySelectorAll('[class]');
 for (var i = 0; i < allElements.length; i++) {
@@ -16,10 +15,9 @@ for (var i = 0; i < allElements.length; i++) {
   }
 }
 
-
 /* for  dynamic evaluation of color and size of relative element   */
-
 /* LIST OF COLOR||font size AND RELATIVE CLASS NAME*/
+// due to the name of class ... it will be written as "in-line" css.....
 let BG_color_set = [];
 let BG_color_class = [];
 let T_color_set = [];
@@ -28,7 +26,7 @@ let Text_size_set = [];
 let Text_size_class = [];
 for (i=0;i<allClasses.length;i++){
   if (allClasses[i].startsWith('bg_color')){
-    let bg_color = allClasses[i].slice(8,15);
+    let bg_color = allClasses[i].slice(8,16);
     BG_color_set.push(bg_color);
     BG_color_class.push(allClasses[i]);
   }
@@ -43,8 +41,6 @@ for (i=0;i<allClasses.length;i++){
     Text_size_class.push(allClasses[i]);
   }
 }
-
-
 /*  NO OF ITERATION TAKE PLACES FOR BG_COLOR  */
 for (i=0;i<BG_color_class.length;i++){
   let no_bg_color = document.getElementsByClassName(BG_color_class[i]).length;
@@ -61,32 +57,25 @@ for (i=0;i<T_color_class.length;i++){
       document.getElementsByClassName(T_color_class[i])[j].style.color = T_color_set[i];
     }
 }
-/*  NO OF ITERATION TAKE PLACES FOR Text_size  */
+
+
+// to write style in style element...
+var style = (function() {
+  var style = document.createElement("style");
+  style.appendChild(document.createTextNode(""));
+  document.head.appendChild(style);
+  return style;
+})();
+// easy one line style....
+style.sheet.insertRule('.reset_base{margin:0;padding:0;box-sizing:content-box;font-size:17px;}', 0);
+style.sheet.insertRule('.foo{color:red;font-size:50px;}', 0);
+style.sheet.insertRule('.bold{font-weight: bold;}', 0);
+style.sheet.insertRule('.italic{font-style: italic;}', 0);
+style.sheet.insertRule('.card_view{border-radius: 3.5px;margin: 15px;text-align: center;}', 0);
+// dynamic part for the font size....
 for (i=0;i<Text_size_class.length;i++){
-  let no_t_size = document.getElementsByClassName(Text_size_class[i]).length;
-    for (j=0;j<no_t_size;j++){
-      let no_t_size_1 = document.getElementsByClassName(Text_size_class[j]).length;
-      document.getElementsByClassName(Text_size_class[i])[j].style.fontSize = Text_size_set[i];
-    }
+  let no_t_size = '.'+Text_size_class[i]+'{font-size:'+Text_size_set[i]+';}'
+  style.sheet.insertRule(no_t_size, 0);
 }
-/*  TEXT BE BOLD*/
-let text_be_bold = document.querySelectorAll(".bold");
-for (i = 0; i <text_be_bold.length; i++) {
-  text_be_bold[i].style.fontWeight = "bold";}
-/*  TEXT BE ITALIC*/
-let text_be_italic = document.querySelectorAll(".italic");
-for (i = 0; i <text_be_italic.length; i++) {
-  text_be_italic[i].style.fontStyle = "italic";}
 
-
-/**
- * more advanced ready to use design 
- */
-
-/*  basic design of card*/
-let be_card = document.querySelectorAll(".card_view");
-for (i = 0; i <be_card.length; i++) {
-  be_card[i].style.padding = "5px";
-  be_card[i].style.margin = "18px 8px 15px 8px ";
-  be_card[i].style.borderRadius = "3.5px";
-  be_card[i].style.textAlign = "center";}
+});
