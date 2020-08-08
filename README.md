@@ -2,7 +2,7 @@
 
 
 Date-2nd/july/2020
-#BASECSS(v1.0-alpha)
+*BASECSS(v1.0-alpha)*
 
 -in this version you can use some basic css attributes by simply adding this class names to the relative element such as : ---reset_base, bg_color#xxxxxx (where '#xxxxxx' stands for hex color code), t_color#xxxxxx, text_xxpx (where 'xxpx' represents '15px',it's the size of relative text), bold, italic. -and card_view (as pre-fixed design).
 on 10th/july/2020,
@@ -10,7 +10,7 @@ on 10th/july/2020,
 
 
 Date-8/Aug/2020
-#BASECSS(v2.0-alpha)#
+*BASECSS(v2.0-alpha)*
 - Use class="base" in the element where you want custom basic properties such as shown:
 
 -- data-base contains five values
