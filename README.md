@@ -10,7 +10,7 @@ on 10th/july/2020,
 
 
 Date-8/Aug/2020
-#BASECSS(v2.0-alpha)
+#BASECSS(v2.0-alpha)#
 - Use class="base" in the element where you want custom basic properties such as shown:
 
 -- data-base contains five values
